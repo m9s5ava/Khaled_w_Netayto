@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            overflow-x: hidden;
+            background-image: url('/Screenshot\ 2025-11-15\ 200117.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* حاول contain إذا تحب تظهر الصورة كلها */
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+        }
+
+        /* Media query لتصغير الصورة على الموبايل */
+        @media (max-width: 768px) {
+            body {
+                font-family: "Poppins", sans-serif;
+                overflow-x: hidden;
+                background-image: url('/Screenshot\ 2025-11-15\ 194113.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                /* حاول contain إذا تحب تظهر الصورة كلها */
+                background-position: center;
+                background-attachment: fixed;
+                text-align: center;
+            }
+
+            .return-btn {
+                position: absolute;
+                bottom: 7%;
+                right: 46%;
+                background-color: brown;
+                color: #fff;
+                border: none;
+                border-radius: 25px;
+                padding: 10px 28px;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: 0.3s;
+            }
+
+        }
+
+        .return-btn {
+            position: absolute;
+              bottom: 6%;
+    right: 48%;
+            background-color: brown;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 28px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .return-btn:hover {
+            background-color: #7a2b2b;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <a href="two_page.html"><button class="return-btn">Return</button></a>
+
+</body>
+
+</html>

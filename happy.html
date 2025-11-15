@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* الخطوط */
+    @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@400;600;700&display=swap");
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Raleway", sans-serif;
+      color: #000;
+      background: url('photo_2025-11-04_00-52-03.jpg') no-repeat center center / cover;
+      overflow-y: auto; /* السماح بالتمرير */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .content {
+      width: 90%;
+      max-width: 650px;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(6px);
+      border-radius: 15px;
+      padding: 25px 20px;
+      box-shadow: 0 0 25px rgba(255, 0, 80, 0.25);
+      margin: 40px 0 100px 0;
+      animation: fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h2 {
+      font-family: "Stack Sans Notch", sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #000;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 20px; /* المسافة المطلوبة */
+      box-shadow: 0 0 12px rgba(255, 100, 100, 0.2);
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.8;
+      text-align: justify;
+      color: #111;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 18px;
+      box-shadow: 0 0 10px rgba(255, 200, 200, 0.4);
+    }
+
+    .h6 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #000;
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      font-family: "Lobster", cursive;
+      font-size: 30px;
+      color: #000000;
+      text-shadow: 0 0 12px #ff4d6d, 0 0 25px #ff99bb;
+      animation: glow 2s infinite alternate;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #ff2e63, 0 0 25px #ff4d6d;
+      }
+
+      to {
+        text-shadow: 0 0 25px #ff0033, 0 0 45px #ff99bb;
+      }
+    }
+
+    .ssss {
+      text-align: center;
+      color: #ff0033;
+      font-weight: 900;
+      font-size: 16px;
+      margin: 15px 0;
+    }
+
+    .bott {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .bott a {
+      display: inline-block;
+      padding: 10px 28px;
+      border-radius: 25px;
+      border: 2px solid #000000;
+      background: transparent;
+      color: #ff0033;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .bott a:hover {
+      background: #ff0033;
+      color: #fff;
+      box-shadow: 0 0 20px #ff4d6d;
+      transform: scale(1.05);
+    }
+
+    footer {
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+      padding: 12px 0;
+      font-family: "Raleway", sans-serif;
+      font-weight: bold;
+      font-size: 13px;
+      border-radius: 10px 10px 0 0;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* القلوب */
+    #hearts-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      width: 18px;
+      height: 18px;
+      background: rgba(255, 50, 100, 0.85);
+      transform: rotate(45deg);
+      animation: floatUp linear forwards;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 50, 100, 0.85);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -50%;
+    }
+
+    .heart::after {
+      left: -50%;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 17px;
+        padding: 10px;
+        margin-bottom: 18px;
+      }
+
+      p {
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      h1 {
+        font-size: 25px;
+      }
+
+      footer {
+        font-size: 11.5px;
+        padding: 10px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="hearts-container"></div>
+
+  <div class="content">
+    <h2>Happy message for the most beautiful person!</h2>
+
+    <p>
+      Look, maybe I’m not always good with words, but every time I see you, or even just think about you, ya Maryomty…
+      I feel calm. It’s like you’re the peace this world could never give me.
+      <br><br>
+      You’re not just someone passing by — you’re all those little details that make me smile for no reason,
+      the point where my life started to make sense again.
+      <br><br>
+      You’re different from anyone else, and I just want you to know that.
+      <br><br>
+      Even if I said everything inside me, it still wouldn’t be enough — some things aren’t said, they’re felt.
+      Like the comfort I get when I talk to you, the laugh that comes out when I wasn’t planning to laugh,
+      like how you’re the most beautiful person I love talking to.
+      <br><br>
+      People might think it’s just simple words, but your presence isn’t simple to me — it’s a blessing.
+      And God knows how much I pray for you, that you always stay happy and safe,
+      and that my life stays next to yours, no matter what changes around us.
+    </p>
+
+    <div class="h6">
+      You’re my joy, my peace,<br>
+      and the only weakness I’m never scared to have.<br>
+      I love you, ya Maryomtyyy ❤️
+    </div>
+
+    <div class="ssss">- - - - - - - - - - - - - - -</div>
+
+    <h1>MESSAGE FOR MY LOVE</h1>
+
+    <div class="bott">
+      <a href="two_page.html">RETURN</a>
+    </div>
+  </div>
+
+  <footer>Mostafa Mohammed | Love &copy; 2025</footer>
+
+  <script>
+    const heartsContainer = document.getElementById("hearts-container");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      const size = Math.random() * 16 + 8;
+      heart.style.width = size + "px";
+      heart.style.height = size + "px";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    setInterval(createHeart, 350);
+  </script>
+</body>
+
+</html>

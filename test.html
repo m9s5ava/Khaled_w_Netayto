@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Flowers Deluxe</title>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(180deg,#fffaf5,#ffe4e1);
+        height: 100vh; overflow:hidden;
+        display:flex; justify-content:center; align-items:center;
+    }
+    .container {
+        position: relative;
+        width: 500px; height: 500px;
+        display: flex; justify-content:center; align-items:center;
+    }
+    .flower-box {
+        position: relative;
+        width: 300px; height: 300px;
+        display: flex; flex-direction: column;
+        justify-content:center; align-items:center;
+        z-index:1;
+    }
+    .flower {
+        width: 200px;
+        transition: transform 0.3s ease, filter 0.3s ease;
+        animation: slowFloat 10s ease-in-out infinite;
+        z-index:2;
+    }
+    @keyframes slowFloat {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+    }
+    /* Glow / Pulse */
+    .pulse { animation: pulse 2s infinite ease-in-out; }
+    @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.08);} 100% {transform: scale(1);} }
+    .glow { animation: glow 2s infinite ease-in-out; }
+    @keyframes glow { 0% {filter: drop-shadow(0 0 5px pink);} 50% {filter: drop-shadow(0 0 20px hotpink);} 100% {filter: drop-shadow(0 0 5px pink);} }
+    
+    /* Particles */
+    .particle {
+        position:absolute; width:8px; height:8px; background:pink; border-radius:50%;
+        opacity:0.8; animation: rise 2s linear forwards;
+    }
+    @keyframes rise { 0% {transform: translateY(0); opacity:1;} 100% {transform: translateY(-60px); opacity:0;} }
+    
+    /* Hearts */
+    .heart {
+        position:absolute; width:15px; height:15px;
+        background:red; transform:rotate(45deg); border-radius:3px;
+        animation: heartFloat 3s linear forwards;
+    }
+    .heart::before,.heart::after{
+        content:""; position:absolute; width:100%; height:100%; border-radius:50%; background:red;
+    }
+    .heart::before { top:-50%; left:0; }
+    .heart::after { left:-50%; top:0; }
+    @keyframes heartFloat {0%{transform:translateY(0) rotate(45deg); opacity:1;} 100%{transform:translateY(-200px) rotate(45deg); opacity:0;} }
+
+    /* Lens flare */
+    .lensflare {
+        position:absolute; width:100px; height:100px; border-radius:50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.6), transparent);
+        pointer-events:none; animation: flare 2s infinite;
+    }
+    @keyframes flare {0%,100%{transform:scale(0.8);}50%{transform:scale(1.2);} }
+
+    /* Floating butterflies */
+    .butterfly {
+        position:absolute; width:20px; height:20px;
+        background:orange; border-radius:50%;
+        animation: fly 5s linear infinite;
+    }
+    @keyframes fly {0%{transform:translate(0,0) rotate(0deg);}25%{transform:translate(50px,-50px) rotate(20deg);}50%{transform:translate(100px,0) rotate(-20deg);}75%{transform:translate(50px,50px) rotate(20deg);}100%{transform:translate(0,0) rotate(0deg);} }
+
+    .nameText {
+        position:absolute; top:110%; font-family:'Lobster'; font-size:24px; color:hotpink;
+        text-shadow:0 0 10px pink; animation: glow 2s infinite ease-in-out;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="flower-box">
+        <img src="photo4-removebg-preview.png" alt="flower" class="flower pulse glow">
+        <div class="nameText">🌹 Maryomty 🌹</div>
+    </div>
+</div>
+
+<script>
+
+    
+// Particle animation
+setInterval(()=>{
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left = 200 + (Math.random()*100-50)+'px';
+    particle.style.top = 200 + 'px';
+    document.body.appendChild(particle);
+    setTimeout(()=>particle.remove(),2000);
+}, 300);
+
+// Hearts on click
+const flower = document.querySelector(".flower");
+flower.addEventListener("click",()=>{
+    for(let i=0;i<5;i++){
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.style.left = 200 + (Math.random()*50-25)+'px';
+        heart.style.top = 200 + 'px';
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),3000);
+    }
+});
+
+// Lens flare effect
+setInterval(()=>{
+    const flare = document.createElement('div');
+    flare.classList.add('lensflare');
+    flare.style.left = 150 + (Math.random()*100)+'px';
+    flare.style.top = 150 + (Math.random()*100)+'px';
+    document.body.appendChild(flare);
+    setTimeout(()=>flare.remove(),2000);
+}, 1000);
+
+// Butterflies flying
+setInterval(()=>{
+    const bfly = document.createElement('div');
+    bfly.classList.add('butterfly');
+    bfly.style.left = Math.random()*400+'px';
+    bfly.style.top = Math.random()*400+'px';
+    document.body.appendChild(bfly);
+    setTimeout(()=>bfly.remove(),5000);
+},1500);
+
+// Mouse glow
+flower.addEventListener("mousemove",(e)=>{
+    flower.style.filter = "drop-shadow(0 0 30px hotpink)";
+    setTimeout(()=>flower.style.filter="drop-shadow(0 0 10px pink)",200);
+});
+</script>
+</body>
+</html>
